@@ -14,17 +14,29 @@ namespace space_test_front
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            foreach (var item in new List<int>() { 1, 2, 3, 4 })
-            {
-                string test = "test " + item;
-            }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return TestHelper.BuildWebSite(args);
+        }
+
+       
+
+        static int Fibonacci(int n)
+        {
+            int firstnumber = 0, secondnumber = 1, result = 0;
+            if (n == 0) return 0; // It will return the first number of the series
+            if (n == 1) return 1; // it will return  the second number of the series
+            for (int i = 2; i <= n; i++)  // main processing starts from here
+            {
+                result = firstnumber + secondnumber;
+                firstnumber = secondnumber;
+                secondnumber = result;
+            }
+            return result;
+        }
+
+
     }
 }
